@@ -50,7 +50,11 @@ GET	/api-docs	Swagger API 문서
      - https://<JCloud-서버-IP>/api-docs
 
 ### 설치
+- npm init -y
+- npm install axios cheerio mongoose express jsonwebtoken bcryptjs dotenv swagger-ui-express winston
 
+
+<<<<<<< HEAD
 ```bash
 - npm install
 - npm install express mongoose jsonwebtoken express-validator swagger-jsdoc swagger-ui-express cors helmet dotenv express-rate-limit axios cheerio
@@ -67,3 +71,5 @@ GET	/api-docs	Swagger API 문서
 - express-rate-limit: API 호출 제한 설정
 - axios: HTTP 요청 라이브러리 (크롤링에 사용)
 - cheerio: HTML 파싱 및 DOM 탐색 (크롤링에 사용)
+=======
+>>>>>>> bd1f3e3d05fad4ce14f2871f3a06989d05b9fc28
