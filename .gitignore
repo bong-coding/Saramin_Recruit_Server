@@ -1,0 +1,10 @@
+
+
+# node_modules 폴더
+node_modules/
+
+# 특정 폴더 무시
+module/
+
+# 빌드 파일 무시
+dist/
