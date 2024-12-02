@@ -21,5 +21,7 @@
 - MongoDB 데이터베이스
 
 ### 설치
+- npm init -y
+- npm install axios cheerio mongoose express jsonwebtoken bcryptjs dotenv swagger-ui-express winston
 
 
