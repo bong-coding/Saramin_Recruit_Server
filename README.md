@@ -22,7 +22,4 @@
 
 ### 설치
 
-```bash
-git clone https://github.com/your-repo/job-platform.git
-cd job-platform
-npm install
+
