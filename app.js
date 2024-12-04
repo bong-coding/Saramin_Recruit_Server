@@ -1,5 +1,7 @@
 // app.js
 const express = require('express');
+const https = require('https');
+const fs = require('fs');
 const mongoose = require('mongoose');
 const config = require('./config');
 const cors = require('cors');
@@ -8,6 +10,9 @@ const rateLimit = require('express-rate-limit');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
 const errorHandler = require('./middlewares/errorHandler');
+
+const key = fs.readFileSync('/home/ubuntu/key.pem');
+const cert = fs.readFileSync('/home/ubuntu/cert.pem');
 
 // 라우트 임포트
 const authRoutes = require('./routes/auth');
@@ -46,7 +51,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: `https://113.198.66.75:${config.port}/api-docs`,
+        url: `https://113.198.66.75:${config.port}`,
       },
     ],
     components: {
@@ -63,7 +68,7 @@ const swaggerOptions = {
   apis: ['./routes/*.js'],
 };
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // 에러 처리 미들웨어
 app.use(errorHandler);
@@ -72,6 +77,7 @@ app.use(errorHandler);
 mongoose
   .connect(config.mongoURI)
   .then(() => {
-    app.listen(config.port, () => console.log(`서버가 ${config.port}번 포트에서 실행 중입니다. /apidocs를 붙여서 확인해주세요.`));
+   const server = https.createServer({ key, cert }, app);	  
+   server.listen(config.port, '0.0.0.0', () => console.log(`서버가 ${config.port}번 포트에서 실행 중입니다.`));
   })
   .catch((err) => console.error('MongoDB 연결 실패:', err));
