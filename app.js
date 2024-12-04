@@ -11,6 +11,7 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
 const errorHandler = require('./middlewares/errorHandler');
 
+
 const key = fs.readFileSync('/home/ubuntu/key.pem');
 const cert = fs.readFileSync('/home/ubuntu/cert.pem');
 
@@ -51,7 +52,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: `https://113.198.66.75:${config.port}`,
+        url: `https://113.198.66.75:17119`,
       },
     ],
     components: {
@@ -77,7 +78,7 @@ app.use(errorHandler);
 mongoose
   .connect(config.mongoURI)
   .then(() => {
-   const server = https.createServer({ key, cert }, app);	  
+   const server = https.createServer({ key, cert }, app);     
    server.listen(config.port, '0.0.0.0', () => console.log(`서버가 ${config.port}번 포트에서 실행 중입니다.`));
   })
   .catch((err) => console.error('MongoDB 연결 실패:', err));
