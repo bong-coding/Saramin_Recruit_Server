@@ -46,7 +46,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: `http://localhost:${config.port}`,
+        url: `https://113.198.66.75:${config.port}/api-docs`,
       },
     ],
     components: {
@@ -72,6 +72,6 @@ app.use(errorHandler);
 mongoose
   .connect(config.mongoURI)
   .then(() => {
-    app.listen(config.port, () => console.log(`서버가 ${config.port}번 포트에서 실행 중입니다.`));
+    app.listen(config.port, () => console.log(`서버가 ${config.port}번 포트에서 실행 중입니다. /apidocs를 붙여서 확인해주세요.`));
   })
   .catch((err) => console.error('MongoDB 연결 실패:', err));
