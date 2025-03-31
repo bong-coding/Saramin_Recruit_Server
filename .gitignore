@@ -9,4 +9,4 @@ module/
 # 빌드 파일 무시
 dist/
 
-.env
+.env/
