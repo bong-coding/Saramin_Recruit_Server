@@ -9,4 +9,5 @@ module/
 # 빌드 파일 무시
 dist/
 
-.env/
+# 환경 변수 파일
+.env
